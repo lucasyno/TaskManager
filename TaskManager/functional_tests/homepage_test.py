@@ -6,6 +6,7 @@ class LoginPageTest(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
 
     def tearDown(self):
         self.browser.quit()
@@ -18,8 +19,28 @@ class LoginPageTest(unittest.TestCase):
         # He notice the page title and header mentioning "task manager"
         self.assertIn('Task Manager', self.browser.title)
 
-        # He is invited to login to page or to create account.
-        self.fail("breakpoint")
+        # He is invited to login to page.
+        # He find text box to enter own username
+        login_field = self.browser.find_element_by_id("username")
+        login_field.send_keys("Admin")
+
+        #He find text box with hidden text to enter password
+        pass_field = self.browser.find_element_by_id("password")
+        pass_field.send_keys("Admin")
+
+        #He wants click to login
+        login_button = self.browser.find_element_by_name("Login")
+        login_button.click()
+
+        # # He wants click to create new acc
+        # register_button = self.browser.find_element_by_name("New_Member")
+        # register_button.click()
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
